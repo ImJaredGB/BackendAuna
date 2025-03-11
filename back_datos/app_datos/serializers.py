@@ -6,3 +6,4 @@ class ReporteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reporte
         fields = '__all__'
+    
