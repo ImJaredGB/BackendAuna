@@ -1,1 +1,0 @@
-web: gunicorn back_datos.back_datos.wsgi:application
