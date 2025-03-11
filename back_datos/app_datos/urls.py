@@ -1,4 +1,3 @@
-# app_datos/urls.py
 from django.urls import path
 from .views import ReporteListCreate, ReporteDetail
 
