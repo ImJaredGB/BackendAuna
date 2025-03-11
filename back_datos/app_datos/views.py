@@ -1,4 +1,3 @@
-# app_datos/views.py
 from rest_framework import generics
 from .models import Reporte
 from .serializers import ReporteSerializer
