@@ -25,13 +25,20 @@ SECRET_KEY = 'django-insecure-pxdy3e*8r57@ik*g514=c3dr-el16k08ixzymbx*)f$fs!!_!d
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+CORS_ALLOW_ALL_ORIGINS = True 
 ALLOWED_HOSTS = ['*']
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Si es React o cualquier otro cliente en desarrollo
+    "http://localhost:8000",  # Si tu frontend está en el mismo dominio, pero en otro puerto
+    "http://192.168.18.12:8000",  # Si es en producción
+]
 
 # Application definition
 
 INSTALLED_APPS = [
     'app_datos',
+    'corsheaders',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,8 +83,11 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',  # Solo usuarios autenticados pueden modificar
+        'rest_framework.permissions.IsAuthenticated',
     ],
 }
 

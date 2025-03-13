@@ -1,25 +1,12 @@
 from django.db import models
 
-SEDE_CHOICES = [
-    ('L TORRE PANAMA', 'L TORRE PANAMA'),
-]
-
-UNIDAD_NEGOCIO_CHOICES = [
-    ('ONCOSALUD', 'ONCOSALUD'),
-]
-
-TIPO_ESPECIALISTA_CHOICES = [
-    ('No Identificado', 'No Identificado'),
-    ('A', 'A'),
-]
-
 class Reporte(models.Model):
     # Datos de Usuario (DNI PK)
     dni = models.IntegerField(primary_key=True)
     nombre_apellidos = models.CharField(max_length=255)
-    sede = models.CharField(max_length=50, choices=SEDE_CHOICES)
-    unidad_negocio = models.CharField(max_length=50, choices=UNIDAD_NEGOCIO_CHOICES)
-    
+    sede = models.CharField(max_length=255)
+    unidad_negocio = models.CharField(max_length=255)     
+
     #Linea Movil y Fija
     linea_movil = models.CharField(max_length=50, blank=True, null=True)
     modelo_movil = models.CharField(max_length=50, blank=True, null=True)
@@ -40,7 +27,7 @@ class Reporte(models.Model):
 
     # Fecha y Tipo de Especialista
     fecha = models.DateField(auto_now_add=True)
-    tipo_especialista = models.CharField(max_length=50, choices=TIPO_ESPECIALISTA_CHOICES, default='No Identificado')
+    tipo_especialista = models.CharField(max_length=255)
 
     def __str__(self):
         return f"Usuario {self.nombre_apellidos} - DNI {self.dni}"
